@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>#tiles_insertAttribute({"name":"title"})#end</title>
+	</head>
+	<header>
+		#tiles_insertAttribute({"name":"header"})#end
+	</header>	
+	<body>
+		#tiles_insertAttribute({"name":"body"})#end
+	</body>
+	<footer>
+		#tiles_insertAttribute({"name":"footer"})#end
+	</footer>
+</html>

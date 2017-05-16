@@ -1,0 +1,14 @@
+#tiles_insertTemplate({"template":"../layout/zjh/template.vm"})
+  #tiles_putAttribute({"name":"title", "value": "首页"})#end
+  #tiles_putAttribute({"name":"header"})
+  	#parse("../layout/zjh/header.vm")
+  #end
+  #tiles_putAttribute({"name":"body"})
+    <div style="text-align:center">
+    	${city}
+    </div>
+  #end
+  #tiles_putAttribute({"name":"footer"})
+    #parse("../layout/zjh/footer.vm")
+  #end
+#end

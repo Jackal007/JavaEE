@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmu.sw.zjh.javaee.dao.ICardDao" >
+	<resultMap type="com.xmu.sw.zjh.javaee.entity.Person" id="personResult">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+	</resultMap>
+	
+	<resultMap type="com.xmu.sw.zjh.javaee.entity.Card" id="cardResult">
+		<id column="id" property="id"/>
+		<result column="code" property="code"/>
+		<association property="person" javaType="Person" column="person_id" select="getPerson"/>
+	</resultMap>
+	
+	<select id="get" resultMap="cardResult" parameterType="java.lang.Integer">
+		SELECT * FROM TB_CARD WHERE ID= #{id}
+	</select>
+	
+	<select id="getPerson" resultMap="personResult" parameterType="java.lang.Integer">
+		SELECT * FROM TB_PERSON WHERE ID= #{id}
+	</select>
+</mapper>
