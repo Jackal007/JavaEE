@@ -23,6 +23,9 @@
 		<com.alibaba.druid.version>1.0.29</com.alibaba.druid.version>
 		<org.mybatis.version>3.4.1</org.mybatis.version>
 		<jdbc.mysql.connector.java.version>5.1.6</jdbc.mysql.connector.java.version>
+		<org.hibernate.core.version>5.0.7.Final</org.hibernate.core.version>
+		<commons.dbcp.version>1.2.2</commons.dbcp.version>
+		<jackson.version>2.8.7</jackson.version>
 	</properties>
 	<!-- 依赖信息 -->
 	<dependencies>	
@@ -64,7 +67,24 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
 		
+		<!-- 数据库池 -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons.dbcp.version}</version>
+		</dependency>
+		<!-- hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate.core.version}</version>
+		</dependency>
 		
 		<!-- mybatis包 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -118,6 +138,19 @@
 		    <groupId>org.apache.tiles</groupId>
 		    <artifactId>tiles-velocity</artifactId>
 		    <version>${tiles.version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
 		</dependency>
 		
 		<dependency>

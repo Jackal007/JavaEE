@@ -1,7 +1,9 @@
-package com.xmu.sw.zjh.javaee.controller;
+package xmu.mystore.goodsindex.zjh.controller;
 
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
+
+import xmu.mystore.goodsindex.zjh.controller.GoodsIndexController;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -12,10 +14,10 @@ public class HomeControllerTest
 	@Test
 	public void testHomePage() throws Exception
 	{
-		HomeController controller=new HomeController();
+		GoodsIndexController controller=new GoodsIndexController();
 		MockMvc mockMvc=standaloneSetup(controller).build();
 		
 		mockMvc.perform(get("/"))
-		.andExpect(view().name("home"));
+		.andExpect(view().name("index"));
 	}
 }

@@ -1,16 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<link rel="stylesheet" href="#springUrl('/resources/css/zjh/swiper-3.4.2.min.css')">
+		<link rel="stylesheet" href="#springUrl('/resources/css/zjh/modal.css')">
+        <script type="text/javascript" src="#springUrl('/resources/js/zjh/jquery-1.12.3.min.js')"></script>
+        <script type="text/javascript" src="#springUrl('/resources/js/zjh/swiper-3.4.2.jquery.min.js')"></script>
+        <script type="text/javascript" src="#springUrl('/resources/js/zjh/goodsDetail.js')"></script>
+        <script type="text/javascript" src="#springUrl('/resources/js/zjh/index.js')"></script>
+        <script type="text/javascript" src="#springUrl('/resources/js/zjh/search.js')"></script>
 		<title>#tiles_insertAttribute({"name":"title"})#end</title>
 	</head>
-	<header>
-		#tiles_insertAttribute({"name":"header"})#end
-	</header>	
 	<body>
+		<input id="hiddenSpringUrl" type="hidden" value="#springUrl('')"/>
+		#if ($selects) 
+			#if($selects.categoryId)
+				<input id="hiddenCategoryId" type="hidden" value="${selects.categoryId}"/>
+			#end
+		#end
 		#tiles_insertAttribute({"name":"body"})#end
 	</body>
-	<footer>
-		#tiles_insertAttribute({"name":"footer"})#end
-	</footer>
 </html>
