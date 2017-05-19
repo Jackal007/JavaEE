@@ -35,7 +35,7 @@ public class GoodsIndexController
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(Model model)
 	{
-		model.addAttribute("cateroryList", goodsMgtService.getCategoryList());
+		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
 		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo();
 		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
 		return "zjh/index";
@@ -56,7 +56,7 @@ public class GoodsIndexController
 			@ModelAttribute("selectParameters")SelectParameters selectParameters,
 			Model model)
 	{
-		model.addAttribute("cateroryList", goodsMgtService.getCategoryList());
+		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
 		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
 		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
 		model.addAttribute("selects", selectParameters);
@@ -73,7 +73,32 @@ public class GoodsIndexController
 		GoodsList goodsList=goodsMgtService.getGoodsBy(array);
 		return goodsList.getGoodsList();
 	}
+	
+	@RequestMapping(value="index/search",method=RequestMethod.POST)
+	public String searchGoods(
+			@ModelAttribute SelectParameters selectParameters,
+			Model model)
+	{
+		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
+		model.addAttribute("brandList", goodsMgtService.getBrandList());
+		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
+		model.addAttribute("selects", selectParameters);
+		return "zjh/search";
+	}
+	
+	
+	@RequestMapping(value="index/changeInSearchPage",method=RequestMethod.POST)
+	public String changeInSearchPage(
+			@ModelAttribute SelectParameters selectParameters,
+			Model model)
+	{
+		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
+		model.addAttribute("brandList", goodsMgtService.getBrandList());
+		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
+		model.addAttribute("selects", selectParameters);
+		return "zjh/search";
+	}
 
-	
-	
 }
