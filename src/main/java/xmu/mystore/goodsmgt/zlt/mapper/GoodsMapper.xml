@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xmu.mystore.goodsmgt.zlt.mapper.GoodsMapper">
+	<resultMap type="xmu.mystore.goodsmgt.zlt.model.Goods" id="GoodsResult">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="serial_code" property="serial_code" />
+		<result column="weight" property="weight" />
+		<result column="stock_count" property="stock_count" />
+		<result column="pre_sale_number" property="pre_sale_number" />
+		<result column="store_id" property="store_id" />
+		<result column="mid_user_price" property="mid_user_price" />
+		<result column="market_price" property="market_price" />
+		<result column="real_price" property="real_price" />
+		<result column="redeem_point" property="redeem_point" />
+		<result column="brand_id" property="brand_id" />
+		<result column="stand_id" property="stand_id" />
+		<result column="add_time" property="add_time" />
+		<result column="last_modified_time" property="last_modified_time" />
+		<result column="description" property="description" />
+		<result column="image_path" property="image_path" />
+		<result column="is_dividable" property="is_dividable" />
+		<result column="default_express" property="default_express" />
+	</resultMap>
+
+	<insert id="add" parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		insert into
+		goods(name,upper_goods_id,rank,type,priority)
+		values(#{name},#{serial_code},
+		#{weight},#{stock_count},#{pre_sale_number},
+		#{store_id},#{mid_user_price},#{market_price},
+		#{real_price},#{redeem_point},
+		#{category_id},#{brand_id},
+		#{add_time},#{last_modified_time},#{description},
+		#{image_path},#{is_dividable},#{default_express})
+	</insert>
+
+	<delete id="delete" parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		delete from goods where
+		id=#{id}
+	</delete>
+
+	<update id="update" parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		update goods
+		set
+		name=#{name},
+		serial_code=#{serial_code},
+		weight=#{weight},
+		stock_count=#{stock_count},
+		pre_sale_number=#{pre_sale_number},
+		store_id=#{store_id},
+		mid_user_price=#{mid_user_price},
+		market_price=#{market_price},
+		real_price=#{real_price},
+		redeem_point=#{redeem_point},
+		category_id=#{category_id},
+		brand_id=#{brand_id},
+		stand_id=#{stand_id},
+		add_time=#{add_time},
+		last_modified_time=#{last_modified_time},
+		description=#{description},
+		image_path=#{image_path},
+		is_dividable=#{is_dividable},
+		default_express=#{default_express},
+		where
+		id=#{id}
+	</update>
+
+	<select id="select" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE id= #{id}
+	</select>
+
+	<select id="selectAll" resultMap="GoodsResult">
+		SELECT * FROM Goods
+	</select>
+
+	<select id="selectBySerialCode" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE serial_code=
+		#{serial_code}
+	</select>
+
+	<select id="selectByName" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE name LIKE '%#{name}%'
+	</select>
+
+	<select id="selectByBrand" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE brand= #{brand}
+	</select>
+
+	<select id="selectByCategory" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE category_id=
+		#{category_id}
+	</select>
+
+	<select id="selectByBrandAndCategory" resultMap="GoodsResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Goods">
+		SELECT * FROM Goods WHERE brand= #{brand} and
+		category_id= #{category_id}
+	</select>
+
+	<select id="selectByPage" resultMap="GoodsResult">
+		SELECT * FROM Goods limit
+		(pageNumber-1)*pageSize,pageSize
+	</select>
+
+	<select id="selectBy" resultMap="GoodsResult" parameterType="xmu.mystore.goodsmgt.zlt.model.SelectParameters">
+		SELECT * FROM Goods,Stand
+		WHERE
+		Goods.id=Stand.goods_id AND
+		Stand.on_market_time &lt;= now() AND
+		Stand.off_market_time &gt;= now() 
+		<if test=" name != null">
+			AND	Goods.name like '${'%'+name+'%'}' 
+		</if>
+		<if test="brand_id != null">
+			AND	brand_id=#{brand_id}
+		</if>
+		<if test="category_id != null">
+			AND category_id=#{category_id}
+		</if>
+		<if test="real_price != null">
+			<choose>
+				<when test="real_price == 0">
+					ORDER BY Goods.real_price DESC
+				</when>
+				<when test="real_price == 1">
+					ORDER BY Goods.real_price ASC
+				</when>
+			</choose>
+		</if>
+		<if test="pre_sale_number != null">
+			<choose>
+				<when test="pre_sale_number == 0">
+					ORDER BY Goods.pre_sale_number DESC
+				</when>
+				<when test="pre_sale_number == 1">
+					ORDER BY Goods.pre_sale_number ASC
+				</when>
+			</choose>
+		</if>
+		limit ${ no * size},#{size}
+	</select>
+
+</mapper>

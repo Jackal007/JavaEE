@@ -1,0 +1,296 @@
+body
+{
+	background: #f9f9f9;
+	width:100%;
+  	padding:0;  /*去除内边距*/
+    border:0;   /*去除边框*/
+    margin:0;   /*去除外边距*/
+    font-family: 微软雅黑;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+#header
+{
+	top:0px;
+	left:0px;
+	height: 40px;
+	width: 100%;
+	background-color: white;
+	border-bottom: 1px solid #cbcbcb;
+	font-size:0;
+}
+
+#header #header-left
+{
+	float:left;
+	width:10%;
+	height:100%;
+}
+
+#header #header-left img
+{
+	margin-top: 6px;
+	width: 28px;
+	height: 28px;
+}
+
+#header #header-right
+{
+	float:left;
+	width:90%;
+	height:100%;
+	display:inline-block;
+}
+
+#header #search-form
+{
+	margin-top:4px;
+	margin-left: 10%;
+	font-size:0px;
+}
+
+#header #search-form input[type="text"]
+{
+	height: 28px;
+	width: 70%;
+	padding-left: 10px;
+	border: 2px solid #7BA7AB;
+	border-radius: 60px 0 0 60px;
+	outline: none;
+	color: #9E9C9C;
+}
+
+#header #search-form input[type="submit"]	
+{
+	position: absolute;
+	width: 30px;
+	height: 34px;
+	border: 2px solid #7BA7AB;
+	border-radius: 0 60px 60px 0;
+	cursor: pointer;
+	background:url(../../images/zjh/search.png) no-repeat; 
+}
+
+#order-div
+{
+	position: absolute;
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: middle;
+	background-color: white;
+	border-bottom: 1px solid #cbcbcb;
+	font-size: 0px;
+	color:#232323;
+	z-index: 10;
+}
+
+#order-div ul
+{
+	width: 25%;
+	margin: 0px;
+	padding: 0px;
+	list-style:none; 
+	text-align: center;	
+	display: inline-block;
+	font-size: 16px;
+	color:red;
+}
+
+#order-div ul li span
+{
+	font-size: 12px;
+}
+
+
+
+#order-div ul li ul
+{
+	list-style:none; 
+	background: white;
+	width: 150%;
+	display: none;
+}
+
+#order-div ul li ul li a
+{
+	width: 100%;
+	font-size: 12px;
+	color: black;
+}
+
+#order-div ul li ul li a:hover,a:active
+{
+	background: lightblue;
+}
+
+
+
+#order-div a
+{
+	vertical-align: top;
+	display: inline-block;
+	width: 25%;
+	height:90%;
+	text-align: center;
+	font-size: 16px;
+	text-decoration: none;
+	color: black;
+}
+
+#order-div span
+{
+	vertical-align: top;
+	display: inline-block;
+	width: 25%;
+	text-align: center;
+	font-size: 16px;
+	color:red;
+}
+
+#choose-type-div
+{
+	position: absolute;
+	top:74px;
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: middle;
+	background-color: white;
+	border-bottom: 1px solid #cbcbcb;
+	font-size: 0px;
+	color:#232323;
+	z-index: 1;
+}
+
+#choose-type-div button
+{
+	position: absolute;
+	top:5px;
+	width:28%;
+	border-radius:20px;
+	outline: none;
+	background:#f0f2f5;
+	border:none;
+	font-size: 16px;
+	font-family: 微软雅黑;
+	z-index: 2;
+}
+
+#choose-type-div button:nth-child(1)
+{
+	left:7%;
+}
+
+#choose-type-div button:nth-child(2)
+{
+	left:37%;
+}
+
+#choose-type-div button:nth-child(3)
+{
+	left:67%;
+}
+
+#goods-list-content
+{
+	position: absolute;
+	top: 107px;
+	left:0;
+	width: 100%;
+}
+
+#goods-item-content
+{
+	width: 100%;
+	font-size:0;
+	background: white;
+	border-bottom: 1px solid #cbcbcb;
+}
+
+#goods-img-content
+{
+	margin-left: 2%;
+	width: 30%;
+	height:132px;
+	display: inline-block;
+}
+
+#goods-img-content a img
+{
+	width: 100%;
+	height:100%;
+}
+
+#goods-message-content
+{
+	width: 66%;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#goods-message-content a p:nth-child(1)
+{
+	color:#2b2b2b;
+	margin:8px 0 3px 0;
+	padding:0 12px 0 8px;
+	font-size:15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+#goods-message-content a p:nth-child(2)
+{
+	margin:24px 0px 5px 5px;
+	color:red;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#goods-message-content span:nth-child(2)
+{
+	display:inline;
+}
+
+#goods-message-content span:nth-child(2) a
+{	
+	color:#2b2b2b;
+	margin-left: 8px;
+	vertical-align: top;
+	font-size: 13px;
+}
+
+#goods-message-content span:nth-child(3)
+{	
+	font-size: 13px;
+	position:absolute;
+	left:90%;
+	vertical-align: top;
+}
+
+
+#goods-message-content  span:nth-child(3) img
+{	
+	width:24px;
+	height:24px;
+}
+
+#loadingDiv
+{
+	text-align:center;
+	font-family:微软雅黑;
+	font-size:18px;
+	width:100%;
+	height:40px;
+	float:left;
+	margin-top:10px;
+}

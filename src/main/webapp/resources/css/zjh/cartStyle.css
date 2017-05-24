@@ -1,0 +1,136 @@
+body, .html {
+    margin: 0;
+    padding: 0;
+}
+
+.my-footer-container {
+    padding: 0 5px 0 0;
+    padding-right: 0;
+    background: #eeeeee;
+    color: #111111;
+    box-shadow: -1px 0 6px #494949;
+    width: 100%;
+    justify-content: space-between;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.my-footer-container span{
+    margin-right: 16px;
+}
+
+.footer-text {
+    display: block;
+    float: left;
+    padding: 10px 10px 10px 5px;
+    flex-grow: 1;
+}
+
+.item-pay {
+    display: block;
+    float: right;
+    margin-right: 0;
+    flex-grow: 1;
+}
+
+.item-pay-btn{
+    border: none;
+    float: right;
+    height: 100%;
+    width: 120px;
+    overflow: hidden;
+    color: #fff;
+    background-color: red;
+    text-align: center;
+    transition: .2s ease-out;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.12), 0px 1px 2px rgba(0,0,0,0.24);
+    font-size: 16px;
+}
+
+.cart-list {
+    padding-top: 0;
+    width: 100%;
+}
+
+mylist-auto-height {
+    height: auto;
+}
+
+.mdl-list__item--three-line .mdl-list__item-text-body {
+    height: auto; !important;
+}
+
+.my-checkbox {
+    width: 10%;
+    margin-left: 10px;
+}
+
+.item-button {
+    width: auto;
+    margin-top: 10px;
+    padding: 0 8px 0 8px;
+    font-size: 10px;
+    height: 24px;
+    line-height: 24px;
+    float: right;
+    display: block;
+
+}
+
+.item_img {
+    height: 70px;
+    width: 70px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.item_text {
+    display: block;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 95%;
+}
+
+.item-second {
+    width: 70%;
+}
+
+.item-price {
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    color: red;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.mdl-list__item {
+    height: 110px;
+    padding-top: 0;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    border-bottom: solid 1px;
+    border-bottom-color: #eeeeee;
+}
+
+.header-color {
+    background: #eeeeee;
+}
+
+.mdl-layout__header-row {
+    padding: 0 0 0 0;;
+}
+
+.mdl-layout-title {
+    color: #333333;
+    width: 75%;
+    padding-left: 80px;
+    text-align: center;
+}
+
+.mdl-layout__header-row .mdl-navigation__link {
+    color: #565656;
+}

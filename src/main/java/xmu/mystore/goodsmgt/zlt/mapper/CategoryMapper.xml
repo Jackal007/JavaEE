@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xmu.mystore.goodsmgt.zlt.mapper.CategoryMapper">
+	<resultMap type="xmu.mystore.goodsmgt.zlt.model.Category" id="CategoryResult">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="upper_category_id" property="upper_category_id" />
+		<result column="rank" property="rank" />
+		<result column="type" property="type" />
+		<result column="priority" property="priority" />
+	</resultMap>
+
+	<insert id="add" parameterType="xmu.mystore.goodsmgt.zlt.model.Category">
+		insert into
+		category(name,upper_category_id,rank,type,priority)
+		values(#{name},#{upper_category_id},#{rank},#{type},#{priority})
+	</insert>
+
+	<delete id="delete" parameterType="xmu.mystore.goodsmgt.zlt.model.Category">
+		delete from category where
+		id=#{id}
+	</delete>
+
+	<update id="update" parameterType="xmu.mystore.goodsmgt.zlt.model.Category">
+		update category
+		set
+		name=#{name},
+		upper_category_id=#{upper_category_id},
+		rank=#{rank},
+		type=#{type},
+		priority=#{priority},
+		where
+		id=#{id}
+	</update>
+
+	<select id="select" resultMap="CategoryResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Category">
+		SELECT * FROM Category WHERE ID= #{id}
+	</select>
+
+	<select id="selectAll" resultMap="CategoryResult" >
+	SELECT * FROM category WHERE type=1 ORDER BY priority
+		<!-- <choose>
+			<when test="isShowable">
+				SELECT * FROM category WHERE type=1 ORDER BY priority
+			</when>
+			<otherwise>
+				SELECT * FROM category ORDER BY priority
+			</otherwise>
+		</choose>
+		 -->
+	</select>
+
+</mapper>

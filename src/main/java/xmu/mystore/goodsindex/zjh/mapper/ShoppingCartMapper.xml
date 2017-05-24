@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xmu.mystore.goodsindex.zjh.mapper.ShoppingCartMapper">
+	<resultMap type="xmu.mystore.goodsindex.zjh.model.ShoppingCart" id="ShoppingCartResult">
+		<id column="id" property="id" />
+		<result column="userId" property="userId" />
+		<result column="goodsId" property="goodsId" />
+		<result column="goodsNumber" property="goodsNumber" />
+	</resultMap>
+
+	<insert id="add" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+		<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+			select @@IDENTITY
+		</selectKey>
+		insert into
+		shoppingcart(userId,goodsId,goodsNumber)
+		values(#{userId},#{goodsId},#{goodsNumber})
+	</insert>
+
+	
+</mapper>

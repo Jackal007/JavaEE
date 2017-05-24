@@ -15,24 +15,23 @@
 		#if ($selects) 
 			<form id="changeConstrainForm" action="#springUrl('/index/changeInSearchPage')" method="post">
 				
-				#if($selects.categoryId)
-					<input id="hiddenCategoryId" name="categoryId" type="hidden" value="${selects.categoryId}"/>
+				#if($selects.category_id)
+					<input id="hiddenCategoryId" name="category_id" type="hidden" value="${selects.category_id}"/>
 				#end
 				
-				#if($selects.brandId)
-					<input id="hiddenBrandId" name="brandId" type="hidden" value="${selects.brandId}"/>
+				#if($selects.brand_id)
+					<input id="hiddenBrandId" name="brand_id" type="hidden" value="${selects.brand_id}"/>
 				#end
 				
-				#if($selects.preSaleNumber)
-					<input id="hiddenPreSaleNumber" name="preSaleNumber" type="hidden" value="${selects.preSaleNumber}"/>
+				#if($selects.pre_sale_number)
+					<input id="hiddenPreSaleNumber" name="pre_sale_number" type="hidden" value="${selects.pre_sale_number}"/>
 				#end
 				
-				#if($selects.realPrice)
-					<input id="hiddenRealPrice" name="realPrice" type="hidden" value="${selects.realPrice}"/>
+				#if($selects.real_price)
+					<input id="hiddenRealPrice" name="real_price" type="hidden" value="${selects.real_price}"/>
 				#end
-				
-				#if($selects.goodsName)
-					<input id="hiddenGoodsName" name="goodsName" type="hidden" value="${selects.goodsName}"/>
+				#if($selects.name)
+					<input id="hiddenGoodsName" name="name" type="hidden" value="${selects.name}"/>
 				#end
 			</form>
 		#end

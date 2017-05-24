@@ -1,7 +1,9 @@
 package xmu.mystore.goodsindex.zjh.controller;
 
 import java.util.List;
-import java.util.Map;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xmu.mystore.goodsindex.zjh.model.SelectParameters;
-import xmu.mystore.goodsindex.zjh.service.IGoodsIndexService;
+import xmu.mystore.goodsmgt.zlt.model.SelectParameters;
+import xmu.mystore.goodsindex.zjh.constant.ProgramConstant;
 import xmu.mystore.goodsmgt.zlt.model.Goods;
-import xmu.mystore.goodsmgt.zlt.model.GoodsList;
-import xmu.mystore.goodsmgt.zlt.service.outter.IGoodsMgtService;
+import xmu.mystore.goodsmgt.zlt.service.GoodsMgtService;
 
 @Controller
 @RequestMapping(value="/")
@@ -25,19 +26,18 @@ public class GoodsIndexController
 {
 	@Autowired
 	@Qualifier("GoodsMgtService")
-	private IGoodsMgtService goodsMgtService;
-	
-	@Autowired
-	@Qualifier("GoodsIndexService")
-	private IGoodsIndexService goodsIndexService;
-	
+	private GoodsMgtService goodsMgtService;
+
+	private Logger logger=Logger.getLogger("GoodsIndexController");
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
-	public String home(Model model)
+	public String home(Model model,HttpSession session)
 	{
+		session.setAttribute("userId", 1);
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
-		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo();
-		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
+		SelectParameters select=new SelectParameters();
+		select.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(select));
 		return "zjh/index";
 	}
 	
@@ -53,51 +53,47 @@ public class GoodsIndexController
 	
 	@RequestMapping(value="index/choose",method=RequestMethod.GET)
 	public String indexChooseTypeHome(
-			@ModelAttribute("selectParameters")SelectParameters selectParameters,
+			@ModelAttribute("selects")SelectParameters selectParameters,
 			Model model)
 	{
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
-		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
-		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
-		model.addAttribute("selects", selectParameters);
+		selectParameters.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(selectParameters));
 		return "zjh/index";
 	}
 	
 	@RequestMapping(value="index/getGoodsListByAjax",method=RequestMethod.POST)
 	@ResponseBody
 	public List<Goods> getGoodsListByAjax(
-			@ModelAttribute("selectParameters")SelectParameters selectParameters,
+			@ModelAttribute("selects")SelectParameters selectParameters,
 			Model model)
 	{
-		Map<String, String>array=goodsIndexService.turnSelectParamtersToMap(selectParameters);
-		GoodsList goodsList=goodsMgtService.getGoodsBy(array);
-		return goodsList.getGoodsList();
+		List<Goods> goodsList=goodsMgtService.getGoodsBy(selectParameters);
+		return goodsList;
 	}
 	
 	@RequestMapping(value="index/search",method=RequestMethod.POST)
 	public String searchGoods(
-			@ModelAttribute SelectParameters selectParameters,
+			@ModelAttribute("selects") SelectParameters selectParameters,
 			Model model)
 	{
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
 		model.addAttribute("brandList", goodsMgtService.getBrandList());
-		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
-		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
-		model.addAttribute("selects", selectParameters);
+		selectParameters.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(selectParameters));
 		return "zjh/search";
 	}
 	
 	
 	@RequestMapping(value="index/changeInSearchPage",method=RequestMethod.POST)
 	public String changeInSearchPage(
-			@ModelAttribute SelectParameters selectParameters,
+			@ModelAttribute("selects") SelectParameters selectParameters,
 			Model model)
 	{
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
 		model.addAttribute("brandList", goodsMgtService.getBrandList());
-		Map<String, String>array=goodsIndexService.getDefaultPageSizeNo(selectParameters);
-		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(array));
-		model.addAttribute("selects", selectParameters);
+		selectParameters.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
+		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(selectParameters));
 		return "zjh/search";
 	}
 

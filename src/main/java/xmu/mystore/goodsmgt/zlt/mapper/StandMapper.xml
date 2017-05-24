@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xmu.mystore.goodsmgt.zlt.mapper.StandMapper">
+	<resultMap type="xmu.mystore.goodsmgt.zlt.model.Stand" id="StandResult">
+		<id column="id" property="id" />
+		<result column="goods_id" property="goods_id" />
+		<result column="mid_user_price" property="mid_user_price" />
+		<result column="market_price" property="market_price" />
+		<result column="real_price" property="real_price" />
+		<result column="on_market_time" property="on_market_time" />
+		<result column="off_market_time" property="off_market_time" />
+		<result column="pre_sale_count" property="pre_sale_count" />
+	</resultMap>
+
+	<insert id="add" parameterType="xmu.mystore.goodsmgt.zlt.model.Stand">
+		insert into
+		stand(goods_id,mid_user_price,market_price,real_price,on_market_time,off_market_time,pre_sale_count)
+		values(#{goods.id},#{goods.mid_user_price},#{goods.market_price},#{goods.real_price},#{goods.on_market_time},#{goods.off_market_time},#{goods.pre_sale_count})
+	</insert>
+
+	<delete id="delete" parameterType="xmu.mystore.goodsmgt.zlt.model.Stand">
+		delete from stand where
+		id=#{id}
+	</delete>
+
+	<update id="update" parameterType="xmu.mystore.goodsmgt.zlt.model.Stand">
+		update stand
+		set
+		on_market_time=#{on_market_time},
+		off_market_time=#{off_market_time},
+		where
+		id=#{id}
+	</update>
+
+	<select id="select" resultMap="StandResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Stand">
+		SELECT * FROM stand WHERE ID= #{id}
+	</select>
+
+	<select id="selectAll" resultMap="StandResult"
+		parameterType="xmu.mystore.goodsmgt.zlt.model.Stand">
+		SELECT *
+		FROM stand
+	</select>
+
+	<select id="selectByPage" resultMap="StandResult">
+		SELECT * FROM stand
+		LIMIT
+		(#{pageNumber}-1)*#{pageSize},#{pageSize}
+	</select>
+
+</mapper>
