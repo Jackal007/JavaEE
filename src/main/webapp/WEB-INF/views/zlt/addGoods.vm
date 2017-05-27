@@ -1,0 +1,138 @@
+#tiles_insertTemplate({"template":"../layout/zlt/template.vm"}) #tiles_putAttribute({"name":"title", "value": "添加品类"})#end #tiles_putAttribute({"name":"header"}) #parse("../layout/zlt/header.vm") #end #tiles_putAttribute({"name":"body"})
+<form class="col s12" action="addGoods" method="post">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-card--expand">
+      <h2 class="mdl-card__title-text">添加商品</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" maxlength="10" id="serial_code" name="serial_code">
+          <label class="mdl-textfield__label" for="serial_code">商品编码(放空将自动生成)</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" maxlength="10" required="required" id="name" name="name">
+          <label class="mdl-textfield__label" for="name">商品名</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <textarea class="mdl-textfield__input" type="text" rows="5" maxlength="255" id="description" name="description"></textarea>
+          <label class="mdl-textfield__label" for="description">商品描述</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="category_id" id="category_id">
+        #foreach($c in $categoryList)
+        <option value="$c.id">$c.name</option>
+        #end
+      </select>
+          <label>品类</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select name="brand_id" id="brand_id">
+        #foreach($b in $brandList)
+        <option value="$b.id">$b.name</option>
+        #end
+      </select>
+          <label>品牌</label>
+        </div>
+      </div>
+      <div class="row">
+        <div style="width:30%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" required="required" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?" id="weight" name="weight">
+            <label class="mdl-textfield__label" for="weight">重量 kg</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+        <div style="width:30%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="stock_count" name="stock_count" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="stock_count">库存量</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+        <div style="width:30%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="pre_sale_number" name="pre_sale_number" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="pre_sale_number">预售量</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" required="required" id="store_id" name="store_id">
+          <label class="mdl-textfield__label" for="store_id">商店id</label>
+        </div>
+      </div>
+      <div class="row">
+        <div style="width:25%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="mid_user_price" name="mid_user_price" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="mid_user_price">中介价 元</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+        <div style="width:25%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="market_price" name="market_price" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="market_price">市场价 元</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+        <div style="width:25%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="real_price" name="real_price" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="real_price">真实价格 元</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+        <div style="width:25%;float:left;">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" required="required" id="redeem_point" name="redeem_point" type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" pattern="-?[0-9]*(\.[0-9]+)?">
+            <label class="mdl-textfield__label" for="redeem_point">积分</label>
+            <span class="mdl-textfield__error">请输入数字</span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="stand_id" name="stand_id">
+          <label class="mdl-textfield__label" for="stand_id">架id</label>
+        </div>
+      </div> -->
+      <input type="hidden" value="0">
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" required="required" id="image_path" name="image_path">
+          <label class="mdl-textfield__label" for="image_path">图片地址</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="default_express" name="default_express">
+          <label class="mdl-textfield__label" for="default_express">默认快递</label>
+        </div>
+      </div>
+      <div class="row">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="type-checkbox">
+          <input type="checkbox" id="type-checkbox" class="mdl-checkbox__input" name="is_dividable" value="1">
+          <span class="mdl-checkbox__label">可以分单</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        OK
+      </button>
+  </div>
+</form>
+#end #tiles_putAttribute({"name":"footer"}) #parse("../layout/zlt/footer.vm") #end #end

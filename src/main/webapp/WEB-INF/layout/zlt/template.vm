@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>#tiles_insertAttribute({"name":"title"})#end</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="#springUrl('/resources/css/zlt/material.min.css')" />
+	<script defer src="#springUrl('/resources/js/zlt/material.min.js')"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- Square card -->
+	<style>
+		.demo-card-square.mdl-card {
+			width: 100%;
+		}
+
+		.demo-card-square>.mdl-card__title {
+			/*color: #135480;*/
+			/*background: url('') bottom right 15% no-repeat #135480;*/
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- The drawer is always open in large screens. The header is always shown,
+	  even in small screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+	            mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<div id="process" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width:100%;"></div>
+				
+				<div class="mdl-layout-spacer"></div>
+			</div>
+		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">商品管理</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="/myStore/Brand">品牌管理</a>
+				<a class="mdl-navigation__link" href="/myStore/Category">品类管理</a>
+				<a class="mdl-navigation__link" href="/myStore/Goods">商品管理</a>
+				<a class="mdl-navigation__link" href="/myStore/Stand">上下架管理</a>
+			</nav>
+		</div>
+		<main class="mdl-layout__content">
+			<div class="page-content">
+				<!-- Your content goes here -->
+				#tiles_insertAttribute({"name":"body"})#end
+			</div>
+		</main>
+	</div>
+	<script>
+					window.onload = function() {
+						setTimeout(function() {
+							document.getElementById("process").style.visibility = "hidden";
+						}, 500);
+					}
+				</script>
+</body>
+
+</html>

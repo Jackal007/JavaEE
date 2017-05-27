@@ -1,0 +1,46 @@
+#tiles_insertTemplate({"template":"../layout/zlt/template.vm"})#tiles_putAttribute({"name":"title", "value": "品牌管理"})#end #tiles_putAttribute({"name":"body"})
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text">所有品牌</h2>
+  </div>
+  <div class="mdl-card__supporting-text" style="height:70%;">
+    <div class="row" style="width:100%;">
+      <!--表格-->
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">名称</th>
+            <th class="mdl-data-table__cell--non-numeric">描述</th>
+            <th class="mdl-data-table__cell--non-numeric">是否展示</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          #foreach($brand in $brandList)
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">
+              <div style="width:80px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; ">
+                $brand.name
+              </div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">$brand.description</td>
+            #if($brand.type==true)
+            <td class="mdl-data-table__cell--non-numeric">是</td>
+            #else
+            <td class="mdl-data-table__cell--non-numeric">否</td>
+            #end
+            <td>
+              <a href="Brand/modifyBrand?id=$brand.id">修改</a></td>
+          </tr>
+          #end
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class=" mdl-card__actions mdl-card--border ">
+    <a href="Brand/addBrand "><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "> 新增品牌
+    </button>
+  </a>
+  </div>
+</div>
+#end #end

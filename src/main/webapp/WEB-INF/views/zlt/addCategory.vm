@@ -1,0 +1,67 @@
+#tiles_insertTemplate({"template":"../layout/zlt/template.vm"}) #tiles_putAttribute({"name":"title", "value": "添加品类"})#end #tiles_putAttribute({"name":"header"}) #parse("../layout/zlt/header.vm") #end #tiles_putAttribute({"name":"body"})
+<form class="col s12" action="addCategory" method="post">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-card--expand">
+      <h2 class="mdl-card__title-text">添加品类</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <div class="row">
+        <div class="row">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" maxlength="20" required="required" id="name" name="name">
+            <label class="mdl-textfield__label" for="name">品类名</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select name="upper_category_id" id="upper_category_id">
+          <option value="0" selected>无</option>
+          #foreach($c in $categoryList)
+          <option value="$c.id">$c.name</option>
+          #end
+        </select>
+            <label>上级品类</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select name="rank">
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            </select>
+            <label>等级</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div class="mdl-textfield mdl-js-textfield">
+              <div style="width:20%;float:left;">
+                <input class="mdl-textfield__input" type="text" required="required" value="0" id="priority" name="priority" pattern="-?[0-9]*(\.[0-9]+)?">
+                <label class="mdl-textfield__label" for="priority">优先级(0-255)</label>
+                <span class="mdl-textfield__error">请输入数字</span>
+              </div>
+              <div style="width:70%;float:left;">
+                <div class="input-field col s12">
+                  <input oninput="document.getElementById('priority').value=this.value;" id="priority_range" class="mdl-slider mdl-js-slider" type="range" min="0" max="255" value="0" tabindex="0">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+            <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" name="type" value="1">
+            <span class="mdl-checkbox__label">在前台显示</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        OK
+      </button>
+    </div>
+  </div>
+</form>
+#end #tiles_putAttribute({"name":"footer"}) #parse("../layout/zlt/footer.vm") #end #end

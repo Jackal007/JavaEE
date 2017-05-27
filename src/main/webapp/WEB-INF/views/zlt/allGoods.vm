@@ -1,0 +1,62 @@
+#tiles_insertTemplate({"template":"../layout/zlt/template.vm"})#tiles_putAttribute({"name":"title", "value": "商品管理"})#end #tiles_putAttribute({"name":"body"})
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text">所有商品</h2>
+  </div>
+  <div class="mdl-card__supporting-text" style="height:70%;">
+    <div class="row">
+      <!--表格-->
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width:100%;">
+        <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">名称</th>
+            <th class="mdl-data-table__cell--non-numeric">描述</th>
+            <th class="mdl-data-table__cell--non-numeric">市场价</th>
+            <th class="mdl-data-table__cell--non-numeric">状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          #foreach ($goods in $goodsList)
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">
+              <div style="width:80px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; ">
+                $goods.name
+              </div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <div style="width:200px;overflow : hidden;text-overflow : ellipsis;">$goods.description</div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <div style="width:200px;overflow : hidden;text-overflow : ellipsis;">$goods.market_price</div>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <input id="u_time" type="hidden" value="$goods.up_time">
+              <input id="d_time" type="hidden" value="$goods.down_time">
+              <div id="state" style="width:80px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; ">
+                下架
+              </div>
+            </td>
+            <script type="text/javascript">
+              var up_time = new Date(document.getElementById("u_time").value + ' 00:00:00'.replace(/-/g, "/"));
+              var down_time = new Date(document.getElementById("d_time").value + ' 00:00:00'.replace(/-/g, "/"));
+              var now = new Date();
+              if (up_time <= now && now <= down_time) {
+                document.getElementById("state").innerHTML = "上架";
+              }
+            </script>
+            <td><a href="Goods/modifyGoods?id=$goods.id">修改</a></td>
+          </tr>
+          #end
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a href="Goods/addGoods"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="window.location.href('addGoods')">
+        新增商品
+      </button>
+    </a>
+  </div>
+</div>
+#end #end

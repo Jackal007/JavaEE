@@ -1,0 +1,92 @@
+#tiles_insertTemplate({"template":"../layout/zjh/cart_template.vm"})
+	#tiles_putAttribute({"name":"title", "value": "购物车详情"})#end
+	#tiles_putAttribute({"name":"body"})
+		<div id="header">
+			<div id="header-left">
+				<img src="#springUrl('/resources/images/zjh/returnPointer.png')" onclick="window.history.back();">
+			</div>
+            <div id="header-middle">购物车</div>
+            <div id="header-right">
+            	<span id="header-edit-span">编辑</span>
+            </div>
+		</div>
+		<div id="body-content">
+			#if($shoppingCartList)
+				#foreach($shoppingCart in $shoppingCartList)
+				 	#set($hrefGoodsSerialCode="/index/goodsDetail/"+$shoppingCart.goodsId)
+					<div id="shoppingcart-item">
+						<input type="hidden" id="hiddenGoodsId" value="$shoppingCart.goodsId"/>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect my-checkbox" for="checkbox-${velocityCount}">
+		                    <input type="checkbox" id="checkbox-${velocityCount}" name="shoppingcart_checkbox" class="mdl-checkbox__input" value="$shoppingCart.id" onclick="calculateAllPriceByCheckbox(this)">
+		                </label>
+			            <a href="#springUrl($hrefGoodsSerialCode)">
+			               <img src="#springUrl($shoppingCart.goods.image_path)"/>
+			            </a>
+			            <div id="shoppingcart-item-message">
+			                <a href="#springUrl($hrefGoodsSerialCode)">
+				            	<p class="shoppingcart-item-name">【$shoppingCart.goods.name】&nbsp;$shoppingCart.goods.description</p>
+				            	<span class="shoppingcart-item-detail">
+				            		库存: <label id="shoppingcart-item-stock-count">$shoppingCart.goods.stock_count</label>&nbsp;&nbsp;&nbsp;&nbsp;积分: $shoppingCart.goods.redeem_point
+				            	</span>
+				            	<span class="shoppingcart-item-price">￥ 
+					            	<b id="shoppingcart-item-price">$shoppingCart.goods.real_price
+					            	</b>
+				            	</span>
+				            </a>
+			            	<span class="shoppingcart-item-number">
+								<label class="shoppingcart-item-number-label">数量 : </label>
+								<button class="numberDownwardButton">-</button>  
+								<button class="numberButton">$shoppingCart.goodsNumber</button>
+								<button class="numberUpwardButton">+</button>
+							</span>
+			            </div>
+					</div>
+				#end
+			#end
+		</div>
+		
+		
+		<div id="hiddenValueDiv">
+		</div>
+		<div id="balanceFooter">
+			<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect my-checkbox">
+               <input type="checkbox" id="checkbox-all" class="mdl-checkbox__input" onchange="select_all(this)">
+            </label>
+            <label class="choose-all-label">全选</label>
+			<span id="all-price-span">合计：<b>￥</b><b id="all-price-element">0</b></span>
+			<input id="buy-goods-button" type="button" value="去结算" onclick="buyGoods()"/>
+		</div>
+
+		<div id="editShoppingCartFooter">
+			<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect my-checkbox">
+               <input type="checkbox" id="checkbox-all" name="shoppingcart_checkbox_all" class="mdl-checkbox__input" onchange="select_all(this)">
+            </label>
+            <label class="choose-all-label">全选</label>
+			<input id="delete-shoppingCart-button" type="button" value="删除" onclick="deleteGoodsInShoppingCart()"/>
+		</div>
+		<div id="footer">
+			<div><a href="#springUrl('')"><img src="#springUrl('/resources/images/zjh/index-footer-1.png')" /><br/>首页</a></div>
+			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/index-footer-2.png')" /><br/>分类</a></div>
+			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/index-footer-3.png')" /><br/>觅Me</a></div>
+			<div><a href="#springUrl('/cart/index')"><img src="#springUrl('/resources/images/zjh/index-footer-4.png')" /><br/>购物车</a></div>
+			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/index-footer-5.png')" /><br/>我的</a></div>
+		</div>
+		
+		<div id="number-modal">
+			<div id="number-modal-content">
+				<div id="number-modal-title">修改商品数量</div>
+				<div id="number-modal-number">
+					<input type="hidden" id="numbermodal-hiddenStockCount"/>
+					<button id="numbermodal-numberDownwardButton">-</button>  
+					<button id="numbermodal-numberButton">1</button>
+					<button id="numbermodal-numberUpwardButton">+</button>
+				</div>
+				<div id="number-modal-bottom">
+					<button id="cancelButton">取消</button>
+					<button id="makeSureButton">确定</button>
+				</div>
+			</div>
+		</div>
+	#end
+#end
+	
