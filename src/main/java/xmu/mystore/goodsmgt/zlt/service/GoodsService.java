@@ -18,7 +18,7 @@ public interface GoodsService {
 	public Goods getAGoods(Goods goods);
 
 	public List<Goods> getAllGoods();
-
+	
 	public Goods getGoodsBySerialCode(Goods goods);
 
 	public List<Goods> getGoodsByBrand(long brandId);

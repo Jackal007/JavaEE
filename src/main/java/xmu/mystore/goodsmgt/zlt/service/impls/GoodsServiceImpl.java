@@ -121,7 +121,7 @@ public class GoodsServiceImpl implements GoodsService {
 			throw new MyException();
 		}
 	}
-
+	
 	@Override
 	public Goods getGoodsBySerialCode(Goods goods) {
 		try {

@@ -106,7 +106,7 @@ function addGoodsToShoppingCart()
 	{
 		var springUrl=$("#hiddenSpringUrl").val();
 		$.ajax({
-	        url: springUrl+"/cart/addShoppingCart",
+	        url: springUrl+"/cart/add",
 	        async: false,
 	        cache: false,
 	        type: 'post',

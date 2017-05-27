@@ -20,6 +20,11 @@ import xmu.mystore.goodsindex.zjh.constant.ProgramConstant;
 import xmu.mystore.goodsmgt.zlt.model.Goods;
 import xmu.mystore.goodsmgt.zlt.service.GoodsMgtService;
 
+/**
+ * 主页控制器
+ * @author ZengJieHang
+ *
+ */
 @Controller
 @RequestMapping(value="/")
 public class GoodsIndexController 
@@ -27,30 +32,52 @@ public class GoodsIndexController
 	@Autowired
 	@Qualifier("GoodsMgtService")
 	private GoodsMgtService goodsMgtService;
-
+	
 	private Logger logger=Logger.getLogger("GoodsIndexController");
 	
+	/**
+	 * 返回主页,页面初始化进入此方法
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(Model model,HttpSession session)
 	{
-		session.setAttribute("userId", 1);
+		session.setAttribute("userId", 1);//设置用户session
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
+		
+		//初始化查询参数
 		SelectParameters select=new SelectParameters();
 		select.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
+		
 		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(select));
 		return "zjh/index";
 	}
 	
-	
-	@RequestMapping(value="index/goodsDetail/{serialCode}",method=RequestMethod.GET)
+	/**
+	 * 返回商品详情页,页面路径/index/GoodsDetail/商品id
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="index/goodsDetail/{id}",method=RequestMethod.GET)
 	public String goodsDetail(
-			@PathVariable String serialCode
-			,Model model)
+			@PathVariable Long id,
+			Model model,
+			HttpSession session)
 	{
-		model.addAttribute("goods", goodsMgtService.getGoodsByGoodsCode(serialCode));
+		model.addAttribute("goods", goodsMgtService.getGoodsByGoodsId(id));
 		return "zjh/goodsDetail";
 	}
 	
+	/**
+	 * 根据商品类别筛选商品,实现主页的分类功能
+	 * @param selectParameters
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="index/choose",method=RequestMethod.GET)
 	public String indexChooseTypeHome(
 			@ModelAttribute("selects")SelectParameters selectParameters,
@@ -62,6 +89,12 @@ public class GoodsIndexController
 		return "zjh/index";
 	}
 	
+	/**
+	 * 通过ajax获取更多商品
+	 * @param selectParameters
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="index/getGoodsListByAjax",method=RequestMethod.POST)
 	@ResponseBody
 	public List<Goods> getGoodsListByAjax(
@@ -72,6 +105,12 @@ public class GoodsIndexController
 		return goodsList;
 	}
 	
+	/**
+	 * 查找商品
+	 * @param selectParameters
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="index/search",method=RequestMethod.POST)
 	public String searchGoods(
 			@ModelAttribute("selects") SelectParameters selectParameters,
@@ -79,19 +118,7 @@ public class GoodsIndexController
 	{
 		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
 		model.addAttribute("brandList", goodsMgtService.getBrandList());
-		selectParameters.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
-		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(selectParameters));
-		return "zjh/search";
-	}
-	
-	
-	@RequestMapping(value="index/changeInSearchPage",method=RequestMethod.POST)
-	public String changeInSearchPage(
-			@ModelAttribute("selects") SelectParameters selectParameters,
-			Model model)
-	{
-		model.addAttribute("categoryList", goodsMgtService.getCategoryList());
-		model.addAttribute("brandList", goodsMgtService.getBrandList());
+		//初始化页码和页大小
 		selectParameters.initialPage(ProgramConstant.INDEX_INITIAL_PAGE, ProgramConstant.INDEX_PIGE_SIZE);
 		model.addAttribute("goodsList", goodsMgtService.getGoodsBy(selectParameters));
 		return "zjh/search";

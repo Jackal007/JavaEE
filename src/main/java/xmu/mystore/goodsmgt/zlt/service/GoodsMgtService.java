@@ -5,6 +5,9 @@ import xmu.mystore.goodsmgt.zlt.model.*;
 
 public interface GoodsMgtService {
 
+	/* 根据商品ID查找商品 */
+	public Goods getGoodsByGoodsId(Long id);
+	
 	/* 根据商品编号查找商品 */
 	public Goods getGoodsByGoodsCode(String serial_code);
 

@@ -7,6 +7,6 @@ package xmu.mystore.goodsindex.zjh.constant;
  */
 public class ProgramConstant 
 {
-	public static int INDEX_PIGE_SIZE=8;
-	public static int INDEX_INITIAL_PAGE=0;
+	public static int INDEX_PIGE_SIZE=8;	//每一页的大小
+	public static int INDEX_INITIAL_PAGE=0;	//初始页码
 }

@@ -19,7 +19,7 @@ public interface GoodsMapper {
 	public Goods select(Goods goods);
 
 	public List<Goods> selectAll();
-
+	
 	public Goods selectBySerialCode(Goods goods);
 
 	public List<Goods> selectByName(Goods goods);

@@ -2,6 +2,8 @@ package xmu.mystore.goodsindex.zjh.model;
 
 import java.io.Serializable;
 
+import xmu.mystore.goodsmgt.zlt.model.Goods;
+
 public class ShoppingCart implements Serializable
 {
 	private static final long serialVersionUID = -2659997323610518314L;
@@ -9,6 +11,8 @@ public class ShoppingCart implements Serializable
 	private Long userId;
 	private Long goodsId;
 	private Integer goodsNumber;
+	private Goods goods;
+	
 	public Long getId() {
 		return id;
 	}
@@ -33,5 +37,11 @@ public class ShoppingCart implements Serializable
 	public void setGoodsNumber(Integer goodsNumber) {
 		this.goodsNumber = goodsNumber;
 	}
-	
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}	
+
 }

@@ -23,6 +23,15 @@ public class GoodsMgtServiceImpl implements GoodsMgtService {
 	private StandService standService;
 
 	@Override
+	/* 根据商品ID查找商品 */
+	public Goods getGoodsByGoodsId(Long id)
+	{
+		Goods goods=new Goods();
+		goods.setId(id);
+		return goodsService.getAGoods(goods);
+	}
+	
+	@Override
 	/* 根据商品编号查找商品 */
 	public Goods getGoodsByGoodsCode(String serial_code) {
 		Goods goods = new Goods();

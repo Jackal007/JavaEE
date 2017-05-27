@@ -1,9 +1,14 @@
 package xmu.mystore.goodsindex.zjh.model;
 
+/**
+ * ajax的返回
+ * @author ZengJieHang
+ *
+ */
 public class AjaxReturnResult 
 {
-	private String code;
-	private String message;
+	private String code;//处理成功或失败
+	private String message;//处理信息
 	
 	public AjaxReturnResult(String code,String message)
 	{

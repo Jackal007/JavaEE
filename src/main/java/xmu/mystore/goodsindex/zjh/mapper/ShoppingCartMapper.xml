@@ -6,16 +6,61 @@
 		<result column="userId" property="userId" />
 		<result column="goodsId" property="goodsId" />
 		<result column="goodsNumber" property="goodsNumber" />
+			<association property="goods" column="goodsId" javaType="xmu.mystore.goodsmgt.zlt.model.Goods">
+				<result column="name" property="name" />
+				<result column="stock_count" property="stock_count" />
+				<result column="redeem_point" property="redeem_point" />
+				<result column="image_path" property="image_path" />
+				<result column="real_price" property="real_price" />
+				<result column="description" property="description" />
+				<result column="serial_code" property="serial_code" />
+			</association>
 	</resultMap>
 
+	<select id="getShoppingCartListByUserId" resultMap="ShoppingCartResult" parameterType="java.lang.Long">
+		select 
+		shoppingcart.id as id,
+		shoppingcart.goodsId as goodsId,
+		shoppingcart.goodsNumber as goodsNumber,
+		goods.name,
+		goods.stock_count,
+		goods.redeem_point,
+		goods.image_path,
+		goods.real_price,
+		goods.description,
+		goods.serial_code
+		from shoppingcart,goods
+		where userId=#{id}
+		and goods.id=shoppingcart.goodsId
+	</select>
+	
+	<select id="selectCartByGoodsIdAndUserId" resultMap="ShoppingCartResult" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+		select id,goodsNumber
+		from shoppingcart
+		where goodsId=#{goodsId} and userId=#{userId}
+	</select>
+	
 	<insert id="add" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
-		<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
-			select @@IDENTITY
-		</selectKey>
 		insert into
 		shoppingcart(userId,goodsId,goodsNumber)
 		values(#{userId},#{goodsId},#{goodsNumber})
 	</insert>
-
 	
+	<update id="update" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+		update shoppingcart
+		set goodsNumber=#{goodsNumber}
+		where id=#{id}
+	</update>
+	
+	<update id="addGoodsNumber" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+		update shoppingcart
+		set goodsNumber=goodsNumber+#{goodsNumber}
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+		update shoppingcart
+		set status='0'
+		where id=#{id}
+	</delete>
 </mapper>

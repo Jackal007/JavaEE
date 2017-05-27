@@ -1,11 +1,15 @@
 package xmu.mystore.config;
 
+import java.util.List;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,6 +18,8 @@ import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.velocity.VelocityConfigurer;
 import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("deprecation")
 @Configuration
@@ -66,5 +72,30 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) 
 	{
 		configurer.enable();
+	}
+	
+	/**
+	 * JSON格式的支持，这个很重要，只有加上这个JSON的消息转换器，才能够支持JSON格式数据的绑定
+	 * @return
+	 */
+	
+	@Bean
+	public MappingJackson2HttpMessageConverter converter()
+	{
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+		converter.setObjectMapper(mapper());
+		return converter;
+	}
+	
+	@Bean
+	public ObjectMapper mapper()
+	{
+		return new ObjectMapper();
+	}
+	
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) 
+	{
+		converters.add(converter());
 	}
 }

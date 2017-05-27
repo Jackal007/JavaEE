@@ -4,12 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xmu.mystore.goodsmgt.zlt.exception.MyException;
-import xmu.mystore.goodsmgt.zlt.mapper.GoodsMapper;
 import xmu.mystore.goodsmgt.zlt.mapper.StandMapper;
 import xmu.mystore.goodsmgt.zlt.model.*;
 import xmu.mystore.goodsmgt.zlt.service.StandService;
@@ -19,8 +17,6 @@ import xmu.mystore.goodsmgt.zlt.service.StandService;
 public class StandServiceImpl implements StandService {
 	@Autowired
 	private StandMapper standMapper;
-	@Autowired
-	private GoodsMapper goodsMapper;
 
 	@Override
 	public boolean modifyStand(Stand stand) {

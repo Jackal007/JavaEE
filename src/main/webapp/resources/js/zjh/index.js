@@ -73,6 +73,10 @@ $(document).ready(function () {
 	})
 })
 
+function submitSearchForm()
+{
+	$("#search-form").submit();
+}
 
 function getCategoryId()
 {

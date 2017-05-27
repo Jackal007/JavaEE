@@ -1,12 +1,12 @@
-#tiles_insertTemplate({"template":"../layout/zjh/template.vm"})
+#tiles_insertTemplate({"template":"../layout/zjh/index_template.vm"})
 	#tiles_putAttribute({"name":"title", "value": "商品详情页"})#end
 	#tiles_putAttribute({"name":"body"})
 	<link rel="stylesheet" href="#springUrl('/resources/css/zjh/goodsDetail.css')">
-	        <script type="text/javascript" src="#springUrl('/resources/js/zjh/goodsDetail.js')"></script>
-	<body>
+	<script type="text/javascript" src="#springUrl('/resources/js/zjh/goodsDetail.js')"></script>
+	
 		<div id="header">
 			<div id="header-left">
-				<img src="#springUrl('/resources/images/zjh/returnPointer.png')">
+				<img src="#springUrl('/resources/images/zjh/returnPointer.png')" onclick="window.history.back();">
 			</div>
 			<div id="header-middle">
 				<span>商&nbsp;品&nbsp;详&nbsp;情</span>
@@ -76,7 +76,7 @@
 			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/goodsDetail-footer-1.png')"/><br/>联系卖家</a></div>
 			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/goodsDetail-footer-2.png')"/><br/>店铺</a></div>
 			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/goodsDetail-footer-3.png')"/><br/>关注</a></div>
-			<div><a href="javascript:void(0)"><img src="#springUrl('/resources/images/zjh/goodsDetail-footer-4.png')"/><br/>购物车</a></div>
+			<div><a href="#springUrl('/cart/index')"><img src="#springUrl('/resources/images/zjh/goodsDetail-footer-4.png')"/><br/>购物车</a></div>
 			<div class="buttonDiv">
 				<button id="addToShoppingCartButton">加入购物车</button>
 			</div>
@@ -101,7 +101,7 @@
 							<span>
 								<button id="numberDownwardButton">-</button>  
 								<button id="numberButton">1</button>
-								<button  id="numberUpwardButton">+</button>
+								<button id="numberUpwardButton">+</button>
 							</span>
 						</div>
 						<div id="shoppingCart-middle-all-price">
@@ -116,6 +116,5 @@
 				</div>
 			</div>
 		#end
-	</body>
 	#end
 #end

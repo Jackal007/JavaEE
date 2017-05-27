@@ -12,7 +12,6 @@ $(document).ready(function () {
 	  })  
 });
 
-
 $(document).ready(function () {
 	$("#goods-detail-div").scroll(function()
 	{

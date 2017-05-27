@@ -109,7 +109,19 @@
 	</select>
 
 	<select id="selectBy" resultMap="GoodsResult" parameterType="xmu.mystore.goodsmgt.zlt.model.SelectParameters">
-		SELECT * FROM Goods,Stand
+		SELECT 
+		Goods.id as id,
+		Goods.name as name,
+		Goods.serial_code as serial_code,
+		Goods.stock_count as stock_count,
+		Goods.redeem_point as redeem_point,
+		Goods.image_path as image_path,
+		Goods.description as description,
+		Stand.pre_sale_count as pre_sale_number,
+		Stand.real_price as real_price,
+		Stand.market_price as market_price,
+		Stand.mid_user_price as mid_user_price
+		FROM Goods,Stand
 		WHERE
 		Goods.id=Stand.goods_id AND
 		Stand.on_market_time &lt;= now() AND
@@ -126,20 +138,20 @@
 		<if test="real_price != null">
 			<choose>
 				<when test="real_price == 0">
-					ORDER BY Goods.real_price DESC
+					ORDER BY Stand.real_price DESC
 				</when>
 				<when test="real_price == 1">
-					ORDER BY Goods.real_price ASC
+					ORDER BY Stand.real_price ASC
 				</when>
 			</choose>
 		</if>
 		<if test="pre_sale_number != null">
 			<choose>
 				<when test="pre_sale_number == 0">
-					ORDER BY Goods.pre_sale_number DESC
+					ORDER BY Stand.pre_sale_count DESC
 				</when>
 				<when test="pre_sale_number == 1">
-					ORDER BY Goods.pre_sale_number ASC
+					ORDER BY Stand.pre_sale_count ASC
 				</when>
 			</choose>
 		</if>

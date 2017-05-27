@@ -225,7 +225,10 @@ $(document).ready(function () {
 		}
 	});
 })
-
+function submitSearchForm()
+{
+	$("#search-form").submit();
+}
 function getMoreGoodsListByAjax(page)
 {
 	var springUrl=$("#hiddenSpringUrl").val();

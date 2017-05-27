@@ -1,17 +1,16 @@
-#tiles_insertTemplate({"template":"../layout/zjh/template.vm"})
+#tiles_insertTemplate({"template":"../layout/zjh/index_template.vm"})
 	#tiles_putAttribute({"name":"title", "value": "商品搜索"})#end
 	#tiles_putAttribute({"name":"body"})
 	<link rel="stylesheet" href="#springUrl('/resources/css/zjh/search.css')">
 	<script type="text/javascript" src="#springUrl('/resources/js/zjh/search.js')"></script>
-	<body>
 		<div id="header">
 			<div id="header-left">
-				<img src="#springUrl('/resources/images/zjh/returnPointer.png')">	
+				<img src="#springUrl('/resources/images/zjh/returnPointer.png')" onclick="window.history.back();">	
 			</div>
 			<div id="header-right">
 	        	<form id="search-form" action="#springUrl('/index/search')" method="post" >
 	  				<input type="text" name="name" placeholder="搜索商品"/>
-	      			<input type="submit" value=""/>
+	      			<img src="#springUrl('/resources/images/zjh/search-1.png')" onclick="submitSearchForm()"/>
 	            </form>
             </div>
 		</div>
@@ -39,7 +38,7 @@
 			#if($goodsList)
             	<input type="hidden" id="hiddenGoodsListLength" value="${goodsList.size()}"/>
 				#foreach($goods in $goodsList)
-					#set($hrefGoodsSerialCode="/index/goodsDetail/"+$goods.serial_code)
+					#set($hrefGoodsSerialCode="/index/goodsDetail/"+$goods.id)
 					<div id="goods-item-content">
 						<div id="goods-img-content">
 							<a href="#springUrl($hrefGoodsSerialCode)">
@@ -190,6 +189,5 @@
 				</div>
 			</div>
 		</div>
-	</body>
 	#end
 #end
