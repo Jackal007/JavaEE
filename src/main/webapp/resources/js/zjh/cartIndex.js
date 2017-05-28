@@ -198,23 +198,45 @@ function buyGoods()
 	var isCheck=$("input[name='shoppingcart_checkbox']:checked");
 	if(isCheck.length>0)
 	{
-		var springUrl=$("#hiddenSpringUrl").val();
-		var form=$("<form action='"+springUrl+"/cart/order' method='post'></form>")
+		var isSuccessSumbit=true;
+		var goodsName="";
 		
-		var postParameterName="orderInfos";
 		for(var i=0;i<isCheck.length;++i)
 		{
 			var shoppingCartItem=$(isCheck[i]).parent().parent();
-			var id=shoppingCartItem.find("#hiddenGoodsId").val();
-			var number=shoppingCartItem.find(".numberButton").html();
-			
-			var inputGoodsId=$("<input type='hidden' name='goodsId' value='"+id+"'/>");
-			var inputGoodsNumber=$("<input type='hidden' name='goodsNumber' value='"+number+"'/>");
-			form.append(inputGoodsId).append(inputGoodsNumber);
+			var number=parseInt(shoppingCartItem.find(".numberButton").html());
+			var stockCount=parseInt(shoppingCartItem.find("#shoppingcart-item-stock-count").html());
+			if(number>stockCount)
+			{
+				isSuccessSumbit=false;
+				goodsName=$("#shoppingcart-item-name-label").html();
+				break;
+			}
 		}
-		form.appendTo("body");
-        form.css('display','none');
-        form.submit();
+		
+		if(isSuccessSumbit)
+		{	
+			var springUrl=$("#hiddenSpringUrl").val();
+			var form=$("<form action='"+springUrl+"/cart/order' method='post'></form>")
+			
+			for(var i=0;i<isCheck.length;++i)
+			{
+				var shoppingCartItem=$(isCheck[i]).parent().parent();
+				var id=shoppingCartItem.find("#hiddenGoodsId").val();
+				var number=shoppingCartItem.find(".numberButton").html();
+				
+				var inputGoodsId=$("<input type='hidden' name='goodsId' value='"+id+"'/>");
+				var inputGoodsNumber=$("<input type='hidden' name='goodsNumber' value='"+number+"'/>");
+				form.append(inputGoodsId).append(inputGoodsNumber);
+			}
+			form.appendTo("body");
+	        form.css('display','none');
+	        form.submit();
+		}
+		else
+		{
+			alert("商品\""+goodsName+"\"不符合要求,原因:商品数量大于库存量.请修改!");
+		}
 	}
 }
 

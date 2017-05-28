@@ -24,7 +24,7 @@
 			            </a>
 			            <div id="shoppingcart-item-message">
 			                <a href="#springUrl($hrefGoodsSerialCode)">
-				            	<p class="shoppingcart-item-name">【$shoppingCart.goods.name】&nbsp;$shoppingCart.goods.description</p>
+				            	<p class="shoppingcart-item-name">【<label id="shoppingcart-item-name-label">$shoppingCart.goods.name</label>】&nbsp;$shoppingCart.goods.description</p>
 				            	<span class="shoppingcart-item-detail">
 				            		库存: <label id="shoppingcart-item-stock-count">$shoppingCart.goods.stock_count</label>&nbsp;&nbsp;&nbsp;&nbsp;积分: $shoppingCart.goods.redeem_point
 				            	</span>
