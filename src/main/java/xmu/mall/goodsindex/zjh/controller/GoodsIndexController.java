@@ -1,4 +1,4 @@
-package xmu.mystore.goodsindex.zjh.controller;
+package xmu.mall.goodsindex.zjh.controller;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import xmu.mystore.goodsmgt.zlt.model.SelectParameters;
-import xmu.mystore.goodsindex.zjh.constant.ProgramConstant;
+import xmu.mall.goodsindex.zjh.constant.ProgramConstant;
 import xmu.mystore.goodsmgt.zlt.model.Goods;
 import xmu.mystore.goodsmgt.zlt.service.GoodsMgtService;
 

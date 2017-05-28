@@ -1,8 +1,8 @@
-package xmu.mystore.goodsindex.zjh.mapper;
+package xmu.mall.goodsindex.zjh.mapper;
 
 import java.util.List;
 
-import xmu.mystore.goodsindex.zjh.model.ShoppingCart;
+import xmu.mall.goodsindex.zjh.model.ShoppingCart;
 
 public interface ShoppingCartMapper
 {

@@ -1,4 +1,4 @@
-package xmu.mystore.config;
+package xmu.config;
 
 import java.sql.SQLException;
 
@@ -16,7 +16,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "xmu.mystore" })
+@ComponentScan(basePackages = { "xmu" })
 public class MybatisConfig {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
@@ -24,7 +24,7 @@ public class MybatisConfig {
 		sqlSessionFactoryBean.setDataSource(dataSource());
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		sqlSessionFactoryBean
-				.setMapperLocations(resolver.getResources("classpath*:xmu/mystore/*/*/mapper/*.xml"));
+				.setMapperLocations(resolver.getResources("classpath*:xmu/*/*/*/mapper/*.xml"));
 		return sqlSessionFactoryBean.getObject();
 	}
 
@@ -70,7 +70,7 @@ public class MybatisConfig {
 	public MapperScannerConfigurer mapperScannerConfigurer() {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 		//因为有两个模块所以。。
-		mapperScannerConfigurer.setBasePackage("xmu.mystore.*.*.mapper");
+		mapperScannerConfigurer.setBasePackage("xmu.*.*.*.mapper");
 		mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
 		return mapperScannerConfigurer;
 	}

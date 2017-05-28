@@ -1,6 +1,6 @@
-package xmu.mystore.goodsindex.zjh.constant;
+package xmu.mall.goodsindex.zjh.constant;
 
-import xmu.mystore.goodsindex.zjh.model.AjaxReturnResult;
+import xmu.mall.goodsindex.zjh.model.AjaxReturnResult;
 /**
  * 产生ajax的返回值
  * 处理成功则返回200

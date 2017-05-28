@@ -1,4 +1,4 @@
-package xmu.mystore.goodsindex.zjh.constant;
+package xmu.mall.goodsindex.zjh.constant;
 
 /**
  * 定义程序常量

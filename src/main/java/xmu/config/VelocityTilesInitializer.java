@@ -1,4 +1,4 @@
-package xmu.mystore.config;
+package xmu.config;
 
 
 import java.util.List;

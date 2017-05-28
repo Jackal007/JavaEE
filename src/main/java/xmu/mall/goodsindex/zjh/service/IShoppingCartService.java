@@ -1,9 +1,9 @@
-package xmu.mystore.goodsindex.zjh.service;
+package xmu.mall.goodsindex.zjh.service;
 
 import java.util.List;
 
-import xmu.mystore.goodsindex.zjh.model.AjaxReturnResult;
-import xmu.mystore.goodsindex.zjh.model.ShoppingCart;
+import xmu.mall.goodsindex.zjh.model.AjaxReturnResult;
+import xmu.mall.goodsindex.zjh.model.ShoppingCart;
 
 public interface IShoppingCartService
 {	

@@ -1,4 +1,4 @@
-package xmu.mystore.goodsindex.zjh.model;
+package xmu.mall.goodsindex.zjh.model;
 
 /**
  * ajax的返回

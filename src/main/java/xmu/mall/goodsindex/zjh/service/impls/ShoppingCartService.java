@@ -1,15 +1,15 @@
-package xmu.mystore.goodsindex.zjh.service.impls;
+package xmu.mall.goodsindex.zjh.service.impls;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import xmu.mystore.goodsindex.zjh.constant.RenderAjaxReturnResult;
-import xmu.mystore.goodsindex.zjh.mapper.ShoppingCartMapper;
-import xmu.mystore.goodsindex.zjh.model.AjaxReturnResult;
-import xmu.mystore.goodsindex.zjh.model.ShoppingCart;
-import xmu.mystore.goodsindex.zjh.service.IShoppingCartService;
+import xmu.mall.goodsindex.zjh.constant.RenderAjaxReturnResult;
+import xmu.mall.goodsindex.zjh.mapper.ShoppingCartMapper;
+import xmu.mall.goodsindex.zjh.model.AjaxReturnResult;
+import xmu.mall.goodsindex.zjh.model.ShoppingCart;
+import xmu.mall.goodsindex.zjh.service.IShoppingCartService;
 
 @Service("ShoppingCartService")
 public class ShoppingCartService implements IShoppingCartService

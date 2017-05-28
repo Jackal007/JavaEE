@@ -3,7 +3,7 @@ package xmu.mystore.goodsindex.zjh.controller;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
-import xmu.mystore.goodsindex.zjh.controller.GoodsIndexController;
+import xmu.mall.goodsindex.zjh.controller.GoodsIndexController;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;

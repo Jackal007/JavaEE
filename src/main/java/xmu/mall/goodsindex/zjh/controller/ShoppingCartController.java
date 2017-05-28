@@ -1,4 +1,4 @@
-package xmu.mystore.goodsindex.zjh.controller;
+package xmu.mall.goodsindex.zjh.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xmu.mystore.goodsindex.zjh.model.AjaxReturnResult;
-import xmu.mystore.goodsindex.zjh.model.OrderInfo;
-import xmu.mystore.goodsindex.zjh.model.ShoppingCart;
-import xmu.mystore.goodsindex.zjh.service.IShoppingCartService;
+import xmu.mall.goodsindex.zjh.model.AjaxReturnResult;
+import xmu.mall.goodsindex.zjh.model.OrderInfo;
+import xmu.mall.goodsindex.zjh.model.ShoppingCart;
+import xmu.mall.goodsindex.zjh.service.IShoppingCartService;
 
 @Controller
 @RequestMapping(value="/cart")

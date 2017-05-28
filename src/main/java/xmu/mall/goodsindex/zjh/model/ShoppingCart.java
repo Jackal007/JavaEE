@@ -1,4 +1,4 @@
-package xmu.mystore.goodsindex.zjh.model;
+package xmu.mall.goodsindex.zjh.model;
 
 import java.io.Serializable;
 

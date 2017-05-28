@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xmu.mystore.goodsindex.zjh.mapper.ShoppingCartMapper">
-	<resultMap type="xmu.mystore.goodsindex.zjh.model.ShoppingCart" id="ShoppingCartResult">
+<mapper namespace="xmu.mall.goodsindex.zjh.mapper.ShoppingCartMapper">
+	<resultMap type="xmu.mall.goodsindex.zjh.model.ShoppingCart" id="ShoppingCartResult">
 		<id column="id" property="id" />
 		<result column="userId" property="userId" />
 		<result column="goodsId" property="goodsId" />
@@ -34,31 +34,31 @@
 		and goods.id=shoppingcart.goodsId
 	</select>
 	
-	<select id="selectCartByGoodsIdAndUserId" resultMap="ShoppingCartResult" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+	<select id="selectCartByGoodsIdAndUserId" resultMap="ShoppingCartResult" parameterType="xmu.mall.goodsindex.zjh.model.ShoppingCart">
 		select id,goodsNumber
 		from shoppingcart
 		where goodsId=#{goodsId} and userId=#{userId}
 	</select>
 	
-	<insert id="add" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+	<insert id="add" parameterType="xmu.mall.goodsindex.zjh.model.ShoppingCart">
 		insert into
 		shoppingcart(userId,goodsId,goodsNumber)
 		values(#{userId},#{goodsId},#{goodsNumber})
 	</insert>
 	
-	<update id="update" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+	<update id="update" parameterType="xmu.mall.goodsindex.zjh.model.ShoppingCart">
 		update shoppingcart
 		set goodsNumber=#{goodsNumber}
 		where id=#{id}
 	</update>
 	
-	<update id="addGoodsNumber" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+	<update id="addGoodsNumber" parameterType="xmu.mall.goodsindex.zjh.model.ShoppingCart">
 		update shoppingcart
 		set goodsNumber=goodsNumber+#{goodsNumber}
 		where id=#{id}
 	</update>
 	
-	<delete id="delete" parameterType="xmu.mystore.goodsindex.zjh.model.ShoppingCart">
+	<delete id="delete" parameterType="xmu.mall.goodsindex.zjh.model.ShoppingCart">
 		update shoppingcart
 		set status='0'
 		where id=#{id}

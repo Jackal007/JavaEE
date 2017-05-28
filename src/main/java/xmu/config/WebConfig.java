@@ -1,4 +1,4 @@
-package xmu.mystore.config;
+package xmu.config;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages={"xmu.mystore"})
+@ComponentScan(basePackages={"xmu"})
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware
 {
 	private ApplicationContext context;
